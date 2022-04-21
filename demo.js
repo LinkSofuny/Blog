@@ -1,24 +1,27 @@
 import MyPromise from './_promise.js'
 
 const promise = new MyPromise((resolve, reject) => {
-    resolve('success1')
+    // console.log(MyPromise.resolve('success'))
+    resolve('success')
+}).then((b) => {
+    console.log('bbb', b)
 })
   
-function other () {
-    return new MyPromise((resolve, reject) =>{
-        resolve('other')
-    })
-}
-promise.then(value => {
-    console.log(1)
-    console.log('resolve', value)
-    return other()
-}).then().then().then().then(value => {
-    console.log(2)
-    console.log(value)
-}).catch(reason => {
-    console.log('reason', reason)
-})
+// function other () {
+//     return new MyPromise((resolve, reject) =>{
+//         resolve('other')
+//     })
+// }
+// promise.then(value => {
+//     console.log(1)
+//     console.log('resolve', value)
+//     return other()
+// }).then().then().then().then(value => {
+//     console.log(2)
+//     console.log(value)
+// }).catch(reason => {
+//     console.log('reason', reason)
+// })
 
 
 // promise
