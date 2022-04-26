@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="unDebounce">
+<script>
+    function debounce (func, time) {
+        return function (arg) {
+            let self = this
+            if (!func.id) {
+                func.call(self, arg)
+            }
+            clearTimeout(func.id)
+            func.id = setTimeout(() => {
+                func.call(self, arg)
+            }, time)
+        }
+    }
+    //模拟一段ajax请求
+    function ajax(content) {
+        console.log('ajax request ' + content)
+    }
+    let dAjax = debounce(ajax, 1000)
+    let inputa = document.getElementById('unDebounce')
+
+    inputa.addEventListener('keyup', function (e) {
+        dAjax(e.target.value)
+    })
+    
+
+</script>
+</body>
+</html>

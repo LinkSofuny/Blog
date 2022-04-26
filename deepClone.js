@@ -10,6 +10,7 @@ function deepClone(aimValue, hash = new WeakMap()) {
     let type = getType(aimValue)
     let res = null;
     if (type === 'Object') {
+        // 当前是对象类型
         hash.set(aimValue)
         res = {}
         for (const key in aimValue) {
@@ -18,13 +19,16 @@ function deepClone(aimValue, hash = new WeakMap()) {
             }
         }
     } else if (type === 'Array') {
+        // 当前是数组类型
         res = []
         aimValue.forEach((item, index) => {
             res[index] = deepClone(item)
         })
     } else if (reference.includes(type)) {
+        // 其他类型
         res = new aimValue.constructor(aimValue)
     } else {
+        // 原始类型
         res = aimValue
     }
     return res
